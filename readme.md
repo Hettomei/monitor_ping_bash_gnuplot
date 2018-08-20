@@ -12,9 +12,12 @@ gnuplot -p -e "set xdata time; set timefmt '%s'; set format x '%H:%M'; plot 'pin
 Run
 
 ```
-./start_ping_log.sh
+./start_ping_log.sh name.log
+
+# wait 5 minutes
+
+./show_graph.sh name.log
 ```
 
-It write inside ping.log
-
-Remember to cp ping.log every day
+If no argument given, it write inside data/ping.log
+Remember to cp data/ping.log every day

@@ -1,12 +1,15 @@
 set -e
 
 FILE=${1:-ping.log}
-ls "data/$FILE"
-DATA="data/$FILE.dat"
+FILEPATH="data/$FILE"
+ls "$FILEPATH"
+DATAPATH="data/$FILE.dat"
+
+grep "bytes from" "$FILEPATH" | sed -E 's/\[([0-9]+\.[0-9]+)\].*time=([0-9.]+) ms/\1 \2/' > "$DATAPATH"
 
 gnuplot -p -e "set title 'Ping duration in milliseconds;
 lower is better';
 set xdata time;
 set timefmt '%s';
 set format x '%H:%M';
-plot '$DATA' using (\$1 + 1*60*60):2 with lines title 'ping';"
+plot '$DATAPATH' using (\$1 + 2*60*60):2 with lines title 'ping';"

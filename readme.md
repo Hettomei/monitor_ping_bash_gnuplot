@@ -1,15 +1,10 @@
-gnuplot -p -e 'plot "ping.log" with lines'
+# Install
 
-
-see https://stackoverflow.com/questions/23803630/gnuplot-plots-incorrect-time-for-time-series-plot
 ```
-gnuplot -p -e "set xdata time; set timefmt '%s'; set format x '%H:%M'; plot 'ping.log' using (\$1 + 1*60*60):2 with lines"
+apt get install gnuplot
 ```
 
-
-# how to
-
-Run
+# How to
 
 ```
 ./start_ping_log.sh name.log
@@ -20,4 +15,18 @@ Run
 ```
 
 If no argument given, it write inside data/ping.log
-Remember to cp data/ping.log every day
+Remember to cp data/ping.log every day or ping will stack
+
+# FAQ
+
+## How to ping another adress ?
+
+Currently not possible without chaning source code.
+
+change `start_ping_log.sh`
+
+PR are welcome.
+
+## How did you translate timestamp in gnuplot ?
+
+see https://stackoverflow.com/questions/23803630/gnuplot-plots-incorrect-time-for-time-series-plot
